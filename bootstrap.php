@@ -15,3 +15,18 @@ use TightenCo\Jigsaw\Jigsaw;
  *     // Your code here
  * });
  */
+
+$events->afterBuild(function (Jigsaw $jigsaw){
+
+    $data = collect($jigsaw->getCollection('posts')->map(function ($page) use ($jigsaw) {
+        return [
+            'title' => $page->title,
+            'categories' => $page->category,
+            'link' => rightTrimPath($jigsaw->getConfig('baseUrl')) . $page->getPath(),
+            'snippet' => $page->getExcerpt(),
+        ];
+    })->values());
+
+    file_put_contents($jigsaw->getDestinationPath() . '/index.json', json_encode($data));
+
+});

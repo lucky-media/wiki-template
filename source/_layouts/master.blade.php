@@ -12,7 +12,7 @@
     <header class="relative">
         <div class="stripes absolute">
         </div>
-        <div class="container relative">
+        <div id="app" class="container relative">
             @include('_partials.menu')
 
             @yield('body')
@@ -21,5 +21,6 @@
     <footer class="container py-20">
     <p class="text-gray-600 text-center font-normal"> Copyright © 2019. Made with <span class="text-red-400">❤</span> from Lucky Media  </p>
     </footer>
+    <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
     </body>
 </html>
